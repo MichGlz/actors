@@ -1,10 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap");
 
+:root {
+  --heightHeaderFilter: 10vh;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--heightHeaderFilter) + 1rem);
+}
+
+.headerFilters {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+  padding-bottom: 1rem;
 }
 
 header {
@@ -34,14 +52,61 @@ nav li {
   display: block;
 }
 
+.letterLinks {
+  height: auto;
+  width: 100%;
+  background-color: rgb(199, 197, 197);
+}
+
+.letterLinks ul {
+  padding: 0 10%;
+  margin-top: 1rem;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  /* gap: 0.5rem; */
+  font-size: 1.4rem;
+}
+
+.letterLinks ol li {
+  padding: 0;
+  margin: 0;
+}
+
+.letterLinks a {
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+
+.letterLinks a:hover {
+  color: coral;
+  font-weight: bold;
+}
+
 #leterList a {
   text-decoration: none;
   color: black;
   font-size: 1.5rem;
-  transition: 0.5s;
+  transition: 0.3s;
   transform-origin: left;
   margin-left: 2rem;
   cursor: pointer;
+}
+
+.slectWrapper {
+  width: 100%;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+  background-color: rgb(230, 227, 227);
+}
+
+main {
+  margin-top: var(--heightHeaderFilter);
 }
 
 .letterGroup {
@@ -81,7 +146,7 @@ nav li {
   border: solid 1px black;
   padding: 1.5rem;
   border-radius: 10px;
-  background-color: darkgrey;
+  background-color: white;
 }
 
 .actor h2,
@@ -108,4 +173,22 @@ h3 span {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
+}
+
+.movieBox {
+  background-color: white;
+  padding: 2rem;
+  border: solid 1px black;
+}
+
+.movieBox h1 {
+  font-size: 200%;
+}
+
+.movieBox h2 {
+  margin-top: 1rem;
+}
+.movieBox li {
+  font-size: 110%;
 }

@@ -1,10 +1,58 @@
+const urlParams = new URLSearchParams(window.location.search);
+
+const movie = urlParams.get("movie");
+
 const url = "json/actors.json";
+
+let movieSelector = document.querySelector("#movieSelector");
+
+if (movie) {
+  //grab the template
+  const templateMovie = document.querySelector("#movieTemplate").content;
+  //clone it
+  const copy = templateMovie.cloneNode(true);
+  //change content
+  copy.querySelector(".modal").addEventListener("click", modalRemove);
+  copy.querySelector(".movieName").textContent = movie;
+
+  //grab parent
+  const parent = document.querySelector("#actorList");
+  //append
+  parent.appendChild(copy);
+
+  fetch(url)
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      filterActors(data);
+    });
+}
+
+function filterActors(actors) {
+  actors.forEach((actor) => {
+    if (actor.movie == movie) {
+      var liActor = document.createElement("LI");
+      liActor.innerText = actor.fullname;
+      document.querySelector(".actorList").appendChild(liActor);
+    }
+  });
+}
+
+document.querySelector("#movieSelector").addEventListener("change", selectMovie);
+
+function selectMovie(e) {
+  console.log(movieSelector.value);
+
+  movieUrl = `?movie=${movieSelector.value}`;
+
+  location.href = `index.html${movieUrl}`;
+}
 
 const abecedario = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 abecedario.forEach(creatSec);
 
 function creatSec(letter) {
-  console.log(letter);
   //grab the template
   const template = document.querySelector("#letter").content;
   //clone it
@@ -18,6 +66,31 @@ function creatSec(letter) {
   //append
   parent.appendChild(copy);
 }
+
+abecedario.forEach(creatLi);
+
+function creatLi(letter) {
+  //grab the template
+  const template2 = document.querySelector("#liLetters").content;
+  //clone it
+  const copy = template2.cloneNode(true);
+  //change content
+  copy.querySelector("a").href = `#letter_${letter}`;
+  copy.querySelector("a").textContent = letter.toUpperCase();
+
+  //grab parent
+  const parent = document.querySelector(".letterLinks ul");
+  //append
+  parent.appendChild(copy);
+}
+
+//----------------------- heder filter height--------------
+const heightFixer = document.querySelector(".headerFilters").offsetHeight + "px";
+console.log(heightFixer);
+const r = document.querySelector(":root");
+r.style.setProperty("--heightHeaderFilter", `${heightFixer}`);
+
+//------------------------------------------------------------
 
 fetch(url)
   .then(function (res) {
@@ -35,21 +108,6 @@ function handleActorList(data) {
   i = data.length;
   // data.forEach(showActor);
   data.forEach(takeActor);
-}
-
-function showActorPop() {
-  //grab the template
-  const template1 = document.querySelector("#actors").content;
-  //clone it
-  const copy = template1.cloneNode(true);
-  //change content
-  copy.querySelector(".modal").addEventListener("click", modalRemove);
-  copy.querySelector("span.name").textContent = this.textContent;
-  copy.querySelector("span.movie").textContent = this.parentElement.querySelector("input").value;
-  //grab parent
-  const parent = document.querySelector("#actorList");
-  //append
-  parent.appendChild(copy);
 }
 
 function takeActor(actor) {
@@ -86,6 +144,21 @@ function takeActor(actor) {
   }
 }
 
+function showActorPop() {
+  //grab the template
+  const template1 = document.querySelector("#actors").content;
+  //clone it
+  const copy = template1.cloneNode(true);
+  //change content
+  copy.querySelector(".modal").addEventListener("click", modalRemove);
+  copy.querySelector("span.name").textContent = this.textContent;
+  copy.querySelector("span.movie").textContent = this.parentElement.querySelector("input").value;
+  //grab parent
+  const parent = document.querySelector("#actorList");
+  //append
+  parent.appendChild(copy);
+}
+
 let idRemove;
 
 function removeOl() {
@@ -96,6 +169,11 @@ function removeOl() {
       idRemove = item.parentElement.id;
 
       item.parentElement.remove();
+      document.querySelectorAll(".letterLinks a").forEach((element) => {
+        if (element.href[element.href.length - 1] == idRemove[idRemove.length - 1]) {
+          element.parentElement.remove();
+        }
+      });
     }
   }
 }

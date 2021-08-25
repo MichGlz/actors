@@ -8,15 +8,32 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header>
-      <h1>MOVIE-MANIA</h1>
-      <nav>
-        <ul>
-          <li>actors</li>
-          <li>movies</li>
-        </ul>
-      </nav>
-    </header>
+    <div class="headerFilters">
+      <header>
+        <h1>MOVIE-MANIA</h1>
+        <!-- <nav>
+          <ul>
+            <li>actors</li>
+            <li>movies</li>
+          </ul>
+        </nav> -->
+      </header>
+      <div class="filters">
+        <div class="letterLinks">
+          <ul></ul>
+        </div>
+        <div class="slectWrapper">
+          <label for="movies">Movies</label>
+          <select name="movies" id="movieSelector">
+            <option value="">--Choose a movie--</option>
+            <option value="Fight Club">Fight Club</option>
+            <option value="Goodfellas">Goodfellas</option>
+            <option value="Inception">Inception</option>
+            <option value="Pulp Fiction">Pulp Fiction</option>
+          </select>
+        </div>
+      </div>
+    </div>
     <main>
       <section id="leterList"></section>
       <section id="actorList"></section>
@@ -31,6 +48,15 @@
         </article>
       </section>
     </template>
+    <template id="movieTemplate">
+      <section class="modal">
+        <article class="movieBox">
+          <h1 class="movieName"></h1>
+          <h2>Actors:</h2>
+          <ul class="actorList"></ul>
+        </article>
+      </section>
+    </template>
     <template id="letter">
       <section id="letter_x" class="letterGroup">
         <h2>x</h2>
@@ -42,6 +68,9 @@
         <a><span class="name"></span> <span class="lastName"></span></a>
         <input type="hidden" class="actorMovie" value="" />
       </li>
+    </template>
+    <template id="liLetters">
+      <li><a href="#letter_a">A</a></li>
     </template>
 
     <script src="/js/app.js"></script>
