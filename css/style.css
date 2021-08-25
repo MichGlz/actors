@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+header {
+  width: 100vw;
+  background-color: darkgray;
+  font-size: 150%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav li {
+  display: block;
+}
+
+#leterList a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5rem;
+  transition: 0.5s;
+  transform-origin: left;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+.letterGroup {
+  margin-top: 3rem;
+}
+
+.letterGroup li {
+  margin-top: 1rem;
+}
+
+#leterList a:hover {
+  color: coral;
+  font-weight: bolder;
+}
+
+.letterGroup h2 {
+  color: rgb(157, 174, 206);
+  font-size: 2rem;
+  padding-left: 2vw;
+  background-color: rgb(227, 228, 228);
+  /* position: sticky;
+  top: max(12.5vw, 20vh); */
+}
+
+#actorList {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 300px));
+  gap: 3rem;
+  padding-bottom: max(3vw, 5vh);
+  padding-top: max(3vw, 5vh);
+}
+
+.actor {
+  border: solid 1px black;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: darkgrey;
+}
+
+.actor h2,
+.actor h3 {
+  color: darkslateblue;
+}
+
+h2 span,
+h3 span {
+  color: black;
+}
+
+.actor h3 {
+  margin-top: 1rem;
+}
+
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(49, 40, 36, 0.575);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

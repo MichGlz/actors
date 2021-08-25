@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MOVIE-MANIA</h1>
+      <nav>
+        <ul>
+          <li>actors</li>
+          <li>movies</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="leterList"></section>
+      <section id="actorList"></section>
+    </main>
+    <footer></footer>
+
+    <template id="actors">
+      <section class="modal">
+        <article class="actor">
+          <h2>Name: <span class="name"></span> <span class="lastName"></span></h2>
+          <h3>Movie: <span class="movie"></span></h3>
+        </article>
+      </section>
+    </template>
+    <template id="letter">
+      <section id="letter_x" class="letterGroup">
+        <h2>x</h2>
+        <ol></ol>
+      </section>
+    </template>
+    <template id="liActor">
+      <li>
+        <a><span class="name"></span> <span class="lastName"></span></a>
+        <input type="hidden" class="actorMovie" value="" />
+      </li>
+    </template>
+
+    <script src="/js/app.js"></script>
+  </body>
+</html>
