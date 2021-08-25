@@ -37,21 +37,6 @@ function handleActorList(data) {
   data.forEach(takeActor);
 }
 
-function showActor(actor) {
-  //grab the template
-  const template1 = document.querySelector("#actors").content;
-  //clone it
-  const copy = template1.cloneNode(true);
-  //change content
-
-  copy.querySelector("span.name").textContent = actor.fullname;
-  copy.querySelector("span.movie").textContent = actor.movie;
-  //grab parent
-  const parent = document.querySelector("#actorList");
-  //append
-  parent.appendChild(copy);
-}
-
 function showActorPop() {
   //grab the template
   const template1 = document.querySelector("#actors").content;
@@ -111,13 +96,6 @@ function removeOl() {
       idRemove = item.parentElement.id;
 
       item.parentElement.remove();
-      //   document.querySelectorAll(".letterLinks a").forEach((element) => {
-      //     if (
-      //       element.href[element.href.length - 1] == idRemove[idRemove.length - 1]
-      //     ) {
-      //       element.parentElement.remove();
-      //     }
-      //   });
     }
   }
 }
