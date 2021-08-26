@@ -22,8 +22,16 @@
         <div class="letterLinks">
           <ul></ul>
         </div>
-        <div class="slectWrapper">
-          <label for="movies">Movies</label>
+
+        <div class="selectWrapper">
+          <label for="sortBy">Sort By</label>
+          <select name="sortBy" id="sortBy">
+            <option>--options--</option>
+            <option value="name">Name</option>
+            <option value="lastName">Last Name</option>
+          </select>
+
+          <label for="movies">Filter By Movies</label>
           <select name="movies" id="movieSelector">
             <option value="">--Choose a movie--</option>
             <option value="Fight Club">Fight Club</option>

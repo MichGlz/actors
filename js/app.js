@@ -1,12 +1,22 @@
 const urlParams = new URLSearchParams(window.location.search);
 
 const movie = urlParams.get("movie");
+const lastName = urlParams.get("sortBy");
 
 const url = "json/actors.json";
 
 let movieSelector = document.querySelector("#movieSelector");
+movieSelector.addEventListener("change", selectMovie);
+let sortBySelector = document.querySelector("#sortBy");
+sortBySelector.addEventListener("change", () => {
+  if (sortBySelector.value == "lastName") {
+    location.href = `index.html?sortBy=lastName`;
+  } else {
+    location.href = `index.html`;
+  }
+});
 
-//-------------------------------------------------
+//-------------------pop up actors filter by movie------------------------------
 if (movie) {
   //grab the template
   const templateMovie = document.querySelector("#movieTemplate").content;
@@ -29,7 +39,6 @@ if (movie) {
       filterActors(data);
     });
 }
-//--------------------------------------------
 
 function filterActors(actors) {
   actors.forEach((actor) => {
@@ -41,8 +50,6 @@ function filterActors(actors) {
   });
 }
 
-document.querySelector("#movieSelector").addEventListener("change", selectMovie);
-
 function selectMovie(e) {
   console.log(movieSelector.value);
 
@@ -50,7 +57,9 @@ function selectMovie(e) {
 
   location.href = `index.html${movieUrl}`;
 }
+//--------------------------------------------
 
+//---------------abecedary sections and links----------------
 const abecedario = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 abecedario.forEach(creatSec);
 
@@ -85,6 +94,7 @@ function creatLi(letter) {
   //append
   parent.appendChild(copy);
 }
+//------------------------------------------------------------------
 
 //----------------------- heder filter height--------------
 const heightFixer = document.querySelector(".headerFilters").offsetHeight + "px";
@@ -113,23 +123,34 @@ function handleActorList(data) {
 }
 
 function takeActor(actor) {
+  //separating name and last name
+  let actorName = actor.fullname.split(" ")[0];
+  let factorName = actor.fullname.split(" ").length;
+  let actorLastName = actor.fullname.split(" ")[factorName - 1];
+  console.log(actorName);
+  console.log(actorLastName);
+
   //grab the template
   const template2 = document.querySelector("#liActor").content;
   //clone it
   const copy = template2.cloneNode(true);
   //change content
   copy.querySelector("li a span.name").textContent = actor.fullname;
-  // copy.querySelector("li a").href = `actor.html?actor=${actor.fullname}`;
+  // copy.querySelector("li a span.lastName").textContent = actorLastName;
   copy.querySelector("li a").addEventListener("click", showActorPop);
   copy.querySelector(".actorMovie").value = actor.movie;
   //grab parent
+  let sortBy = actorName.charAt(0);
 
-  let actorName = actor.fullname.toString();
-  let firstLeter = actorName.charAt(0);
+  if (lastName) {
+    sortBy = actorLastName.charAt(0);
+  }
+
+  let firstLeter = sortBy;
   let actorLower;
   let parentActor;
   if (isNaN(firstLeter)) {
-    actorLower = actorName.toLowerCase();
+    actorLower = sortBy.toLowerCase();
 
     parentActor = `#letter_${actorLower.charAt(0)} ol`;
   } else {
