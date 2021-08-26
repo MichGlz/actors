@@ -6,6 +6,7 @@ const url = "json/actors.json";
 
 let movieSelector = document.querySelector("#movieSelector");
 
+//-------------------------------------------------
 if (movie) {
   //grab the template
   const templateMovie = document.querySelector("#movieTemplate").content;
@@ -28,6 +29,7 @@ if (movie) {
       filterActors(data);
     });
 }
+//--------------------------------------------
 
 function filterActors(actors) {
   actors.forEach((actor) => {
