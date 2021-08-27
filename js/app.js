@@ -55,7 +55,7 @@ function filterActors(actors) {
 function selectMovie(e) {
   console.log(movieSelector.value);
 
-  movieUrl = `?movie=${movieSelector.value}`;
+  let movieUrl = `?movie=${movieSelector.value}`;
 
   location.href = `index.html${movieUrl}`;
 }
