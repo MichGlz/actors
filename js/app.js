@@ -12,7 +12,7 @@ sortBySelector.addEventListener("change", () => {
   if (sortBySelector.value == "lastName") {
     location.href = `index.html?sortBy=lastName`;
   } else {
-    location.href;
+    location.href = "index.html";
   }
 });
 
