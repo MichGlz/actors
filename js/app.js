@@ -1,10 +1,12 @@
+"use strict";
+
 const urlParams = new URLSearchParams(window.location.search);
 
 const movie = urlParams.get("movie");
 const lastName = urlParams.get("sortBy");
-
 const url = "json/actors.json";
 
+let idRemove;
 let movieSelector = document.querySelector("#movieSelector");
 movieSelector.addEventListener("change", selectMovie);
 let sortBySelector = document.querySelector("#sortBy");
@@ -127,8 +129,8 @@ function takeActor(actor) {
   let actorName = actor.fullname.split(" ")[0];
   let factorName = actor.fullname.split(" ").length;
   let actorLastName = actor.fullname.split(" ")[factorName - 1];
-  console.log(actorName);
-  console.log(actorLastName);
+  // console.log(actorName);
+  // console.log(actorLastName);
 
   //grab the template
   const template2 = document.querySelector("#liActor").content;
@@ -181,8 +183,6 @@ function showActorPop() {
   //append
   parent.appendChild(copy);
 }
-
-let idRemove;
 
 function removeOl() {
   console.log("removeOL()");
